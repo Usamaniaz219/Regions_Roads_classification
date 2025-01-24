@@ -8,6 +8,13 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 model = torchvision.models.wide_resnet101_2(weights=torchvision.models.Wide_ResNet101_2_Weights.IMAGENET1K_V2)
 model.to(device)
 checkpoint_path = 'checkpoint_epoch_20.pth'
+
+transform = transforms.Compose([
+    transforms.Resize((1000, 1000)),  # Resize image to 500 * 500
+    transforms.ToTensor(),          # Convert image to tensor
+    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])  # Normalize
+])
+
 # model.load_state_dict(torch.load(checkpoint_path))
 # model.eval()
 def load_checkpoint(filepath):
@@ -16,12 +23,6 @@ def load_checkpoint(filepath):
     model.load_state_dict(checkpoint['state_dict'])
     model.eval()
     return model
-
-transform = transforms.Compose([
-    transforms.Resize((1000, 1000)),  # Resize image to 500 * 500
-    transforms.ToTensor(),          # Convert image to tensor
-    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])  # Normalize
-])
 
 def isRoads(image):
         # Define transformations (Resize, Tensor conversion, and Normalization)
