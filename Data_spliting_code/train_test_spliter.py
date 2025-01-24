@@ -44,7 +44,6 @@ def split_dataset(dataset_dir, output_dir, test_size=0.1, random_state=42):
 
     print(f"Dataset split completed. Train and test data saved in '{output_dir}'.")
 
-# Example usage
 dataset_path = "Roads_and_regions_data_23_jan_2025"  # Input dataset directory
 output_path = "Roads_and_regions_dataset"  # Output directory for train/test split
 split_dataset(dataset_path, output_path, test_size=0.1)
